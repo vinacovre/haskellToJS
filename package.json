@@ -1,7 +1,7 @@
 {
   "name": "haskelltonode",
   "version": "1.0.0",
-  "description": "Functional Programming with JavaScript. Converting Haskell to JS.",
+  "description": "Functional Programming with JavaScript. Converting Haskell to JS three modes: map/reduce, procedural, recursive.",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
