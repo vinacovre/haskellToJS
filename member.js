@@ -25,7 +25,22 @@ function member(element) {
  *      where memo is the initial state of the reduction (base value).
  */
 arrIn.map(member(3)).reduce(function(num) {return num == true;}, false);
-arrIn.map(member(10)).reduce((num) => num || false, false);
+arrIn.map(member(10)).reduce((num, curr) => num || curr, false);
 
 // see following link to check why the above code is not working 
 //https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+
+/**
+ * REDUCE SYNTAX
+
+[0, 1, 2, 3, 4].reduce(
+  function (
+    accumulator,
+    currentValue,
+    currentIndex,
+    array
+  ) {
+    return accumulator + currentValue;
+  }
+);
+ */
