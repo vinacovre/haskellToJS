@@ -1,4 +1,4 @@
-var _ = require('underscore');
+const _ = require('underscore');
 
 var arrIn = [1,2,3,3,4,5,6,5,6,7,8,9];
 
@@ -97,3 +97,93 @@ arrIn.reduce((acc, curr) => acc || odd(curr), false); // is there an odd number?
         sum' (x:xs) = x + sum' xs
  */
 arrIn.reduce((acc, curr) => acc + curr, 0);
+
+
+/**************************************************************
+ * COUNT in Haskell
+        count :: Eq a => a -> [a] -> Integer
+        count _ [] = 0
+        count y (x:xs) = if y==x
+                        then 1 + count y(xs)
+                        else count y(xs)
+ */
+function isThere(value) {
+    return function(element) {
+        if(element == value)
+            return true;
+        return false;
+    }
+}
+arrIn.map(isThere(6)).reduce((acc, curr) => acc + curr, false);
+
+
+/**************************************************************
+ * FILTER in Haskell
+        filter' :: (a -> Bool) -> [a] -> [a]
+        filter' _ [] = []
+        filter' y (x:xs) = if y(x)
+                            then x : filter' y(xs)
+                            else filter' y(xs)
+ */
+arrIn.filter(odd);
+
+
+/**************************************************************
+ * STAMMER in Haskell
+        stammer :: [a] -> [a]
+        stammer [] = []
+        stammer (x:xs) = x:x : stammer (xs)
+ */
+var arrRes = arrIn.map((curr) => [curr, curr]);
+var arrRes = [].concat.apply([],arrRes); //flattening array
+console.log(arrRes);
+// OR...
+arrIn.map((curr) => [curr, curr]).reduce((prev,curr) => prev.concat(curr));
+// OR...
+arrIn.map((curr) => [curr, curr]).flatten;
+
+
+/**************************************************************
+ * LIST_TAIL in Haskell
+        listTail :: [a] -> Int -> [a]
+        listTail (x:xs) cont = if (cont == 0)
+                                then x:xs
+                                else listTail xs (cont-1)
+ */
+//array.splice(start, numOfElementsToBeDeleted, insertionOfItem1, insertionOfItem2, ...)
+arrIn.splice(0, 1);
+arrIn;
+
+
+/**************************************************************
+ * ALTERNATE in Haskell
+        alternate :: [a] -> [a]
+        alternate [] = []
+        alternate [z] = [z]
+        alternate (x:y:xs) = y:x : alternate xs
+ */
+function alternate(arr) {
+    var limit;
+    odd(arr.length) ? limit = arr.length - 1 : limit = arr.length;
+    for(var i = 0; i < limit; i += 2)
+        [arr[i], arr[i+1]] = [arr[i+1], arr[i]];
+    return arr;
+}
+
+
+/**************************************************************
+ * SORTED in Haskell
+        sorted :: Ord a => [a] -> Bool
+        sorted [] = True
+        sorted [z] = True
+        sorted (a:b:xs) = a < b && sorted (b:xs)
+ */
+// Last index out of array's range (becomes "undefined")
+// arrIn.reduce((acc, curr, idx, arr) => acc && curr <= arr[idx+1], true);
+function isSorted(arr) {
+    for(var i = 1; i < arr.length; i++) {
+        if(arr[i-1] > arr[i])
+            return false;
+    }
+    return true;
+}
