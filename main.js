@@ -238,3 +238,19 @@ arrIn.filter((element, index, arr) => {
  */
 arrIn.concat(strIn);
 arrIn.concat(arrIn2);
+
+
+/**************************************************************
+ * MY_MAX in Haskell
+        myMax :: Ord a => [a] -> a
+        myMax xs = myMax' xs (head xs)
+        myMax' [] a = a
+        myMax' (x:xs) a = if x > a
+                        then myMax' xs x
+                        else myMax' xs a
+ */
+arrIn.reduce((acc, curr) => {
+    if(curr > acc)
+        return curr;
+    return acc;
+}, -1);
