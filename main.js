@@ -1,7 +1,7 @@
 const _ = require('underscore');
 
-var arrIn = [1,2,3,3,4,5,6,5,6,7,8,9];
-var arrIn2 = [88,99,77,555];
+var arrIn = [3,3,4,5,6,5,6,7,8,9,10,6,15];
+var arrIn2 = [0,1,2,2,3,88,99,77,555];
 var strIn = 'abcde';
 
 function even(num) {
@@ -228,13 +228,10 @@ arrIn.filter((element, index, arr) => {
 
 
 /**************************************************************
- * MERGE in Haskell
-        merge :: (Ord a) => [a] -> [a] -> [a]
-        merge [] [] = []
-        merge [] [a] = [a]
-        merge (x:xs) (y:ys) = if x < y
-                                then x:y : merge xs (y:ys)
-                                else y:x : merge (x:xs) ys
+ * APPEND in Hskell
+        append :: [a] -> [a] -> [a]
+        append [] a = a
+        append (x:xs) ys = x: append xs ys
  */
 arrIn.concat(strIn);
 arrIn.concat(arrIn2);
@@ -242,15 +239,28 @@ arrIn.concat(arrIn2);
 
 /**************************************************************
  * MY_MAX in Haskell
-        myMax :: Ord a => [a] -> a
-        myMax xs = myMax' xs (head xs)
-        myMax' [] a = a
-        myMax' (x:xs) a = if x > a
-                        then myMax' xs x
-                        else myMax' xs a
- */
-arrIn.reduce((acc, curr) => {
+ myMax :: Ord a => [a] -> a
+ myMax xs = myMax' xs (head xs)
+ myMax' [] a = a
+ myMax' (x:xs) a = if x > a
+ then myMax' xs x
+ else myMax' xs a
+    */
+ arrIn.reduce((acc, curr) => {
     if(curr > acc)
         return curr;
     return acc;
-}, -1);
+}, -Infinity);
+    
+    
+/**************************************************************
+ * MERGE in Haskell
+        merge :: (Ord a) => [a] -> [a] -> [a]
+        merge [] [] = []
+        merge [] [a] = [a]
+        merge (x:xs) (y:ys) = if x < y
+                                then x:y : merge xs (y:ys)
+                                else y:x : merge (x:xs) ys
+*/
+arrIn.concat(arrIn2).sort((a,b) => a - b);
+// "(a,b) => a - b" works the way it does because ir returns whenever "a" is less than "b"
