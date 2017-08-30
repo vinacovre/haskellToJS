@@ -264,3 +264,14 @@ arrIn.concat(arrIn2);
 */
 arrIn.concat(arrIn2).sort((a,b) => a - b);
 // "(a,b) => a - b" works the way it does because ir returns whenever "a" is less than "b"
+
+
+/**************************************************************
+ * REMQ in Haskell
+        remq :: Eq a => a -> [a] -> [a]
+        remq y [] = []
+        remq y (x:xs) = if y == x
+                        then remq y xs
+                        else x : remq y xs
+ */
+arrIn.filter((element) => element != 6);
