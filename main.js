@@ -274,4 +274,17 @@ arrIn.concat(arrIn2).sort((a,b) => a - b);
                         then remq y xs
                         else x : remq y xs
  */
-arrIn.filter((element) => element != 6);
+arrIn.filter(element => element != 6);
+
+
+/**
+ * REMOVE_FIRST
+        removeKFirst :: Eq a => a -> Int -> [a] -> [a]
+        removeKFirst _ k [] = []
+        removeKFirst y k (x:xs) = if k == 0
+                                then (x:xs)
+                                    else if x == y
+                                    then removeKFirst y (k-1) xs
+                                    else x : removeKFirst y k xs
+ */
+arrIn.filter((element, index) => index != 0);
