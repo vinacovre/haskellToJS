@@ -1,6 +1,8 @@
 const _ = require('underscore');
 
 var arrIn = [1,2,3,3,4,5,6,5,6,7,8,9];
+var arrIn2 = [88,99,77,555];
+var strIn = 'abcde';
 
 function even(num) {
     if (num % 2 == 0)
@@ -223,3 +225,16 @@ arrIn.filter((element, index, arr) => {
     if (index == arr.indexOf(element))
         return element;
 });
+
+
+/**************************************************************
+ * MERGE in Haskell
+        merge :: (Ord a) => [a] -> [a] -> [a]
+        merge [] [] = []
+        merge [] [a] = [a]
+        merge (x:xs) (y:ys) = if x < y
+                                then x:y : merge xs (y:ys)
+                                else y:x : merge (x:xs) ys
+ */
+arrIn.concat(strIn);
+arrIn.concat(arrIn2);
