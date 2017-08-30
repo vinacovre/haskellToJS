@@ -196,8 +196,30 @@ function isSorted(arr) {
         odds [z] = [z]
         odds (x:y:xs) = x : odds xs
  */
-arrIn.filter(
-    (element, index) => {
-        if(odd(index))
-            return element;
-    });
+arrIn.filter((element, index) => odd(index));
+// OR ...
+arrIn.filter((element, index) => {
+    if(odd(index))
+        return element;
+});
+// filter returns an array with elements that passed the condition
+
+
+/**************************************************************
+ * UNIQUE in Haskell
+        unique' :: Eq a => a -> [a] -> [a]
+        unique' n [] = []
+        unique' n (x:xs) = if n == x
+                            then unique' n xs
+                            else x : unique' x xs
+
+        unique :: Eq a => [a] -> [a]
+        unique [] = []
+        unique (x:xs) = x : unique' x xs
+ */
+arrIn.filter((element, index, arr) => index == arr.indexOf(element));
+// OR...
+arrIn.filter((element, index, arr) => {
+    if (index == arr.indexOf(element))
+        return element;
+});
