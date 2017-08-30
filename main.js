@@ -187,3 +187,17 @@ function isSorted(arr) {
     }
     return true;
 }
+
+
+/**************************************************************
+ * ODDS in Haskell
+        odds :: [a] -> [a]
+        odds [] = []
+        odds [z] = [z]
+        odds (x:y:xs) = x : odds xs
+ */
+arrIn.filter(
+    (element, index) => {
+        if(odd(index))
+            return element;
+    });
