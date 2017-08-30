@@ -62,9 +62,9 @@ arrIn.map(twice());
                                 else y : removeFirst x ys
  */
 function removeFirst(arrIn, item) {
-    var index = arrIn.indexOf(item);
-    if (index > -1) {
-        arrIn.splice(index, 1);
+    var idx = arrIn.indexOf(item);
+    if (idx > -1) {
+        arrIn.splice(idx, 1);
     }
     return arrIn;
 }
@@ -198,10 +198,10 @@ function isSorted(arr) {
         odds [z] = [z]
         odds (x:y:xs) = x : odds xs
  */
-arrIn.filter((element, index) => odd(index));
+arrIn.filter((element, idx) => odd(idx));
 // OR ...
-arrIn.filter((element, index) => {
-    if(odd(index))
+arrIn.filter((element, idx) => {
+    if(odd(idx))
         return element;
 });
 // filter returns an array with elements that passed the condition
@@ -219,10 +219,10 @@ arrIn.filter((element, index) => {
         unique [] = []
         unique (x:xs) = x : unique' x xs
  */
-arrIn.filter((element, index, arr) => index == arr.indexOf(element));
+arrIn.filter((element, idx, arr) => idx== arr.indexOf(element));
 // OR...
-arrIn.filter((element, index, arr) => {
-    if (index == arr.indexOf(element))
+arrIn.filter((element, idx, arr) => {
+    if ( idx== arr.indexOf(element))
         return element;
 });
 
@@ -277,7 +277,7 @@ arrIn.concat(arrIn2).sort((a,b) => a - b);
 arrIn.filter(element => element != 6);
 
 
-/**
+/**************************************************************
  * REMOVE_FIRST
         removeKFirst :: Eq a => a -> Int -> [a] -> [a]
         removeKFirst _ k [] = []
@@ -287,4 +287,39 @@ arrIn.filter(element => element != 6);
                                     then removeKFirst y (k-1) xs
                                     else x : removeKFirst y k xs
  */
-arrIn.filter((element, index) => index != 0);
+arrIn.filter((element, idx) =>  idx!= 0);
+
+
+/**************************************************************
+ * LONGEST in Haskell
+        longest :: [[a]] -> [a]
+        longest [] [[]] = []
+        longest x [[y:ys]] = if length' x > length' y
+                            then longest x [[ys]]
+                            else longest y [[ys]]
+ */
+var arrIn3 = [arrIn, arrIn2];
+arrIn3.reduce((acc, curr) => {
+    if(curr.length > acc.length)
+        return acc = curr;
+    return acc;
+}, []);
+
+
+/**************************************************************
+ * SUBSTITUTE in Haskell
+        substitute :: Eq a => a -> a -> [a] -> [a]
+        substitute a b [] = []
+        substitute a b (x:xs) = if x == a
+                                then b : substitute a b xs
+                                else x : substitute a b xs
+ */
+function substitute(x,y) {
+    return function(element) {
+        if(element == x)
+            return y;
+        return element;
+    }
+}
+arrIn.map(substitute(6,777));
+// substitutes x by y
