@@ -9,6 +9,7 @@ function even(num) {
         return true;
     return false;
 }
+// const even = num => num % 2 == 0;
 
 function odd(num) {
     return !even(num);
