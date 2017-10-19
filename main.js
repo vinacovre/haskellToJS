@@ -9,11 +9,13 @@ function even(num) {
         return true;
     return false;
 }
-// const even = num => num % 2 == 0;
+// const even = num => num % 2 === 0;
 
 function odd(num) {
     return !even(num);
 }
+// const odd = num => !even(num);
+// const odd = num => num % 2 !== 0
 
 
 /**************************************************************
